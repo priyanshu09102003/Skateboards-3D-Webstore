@@ -26,6 +26,7 @@ export default {
         "brand-pink": "#f7d0e9",
         "brand-purple": "#692e54",
         "brand-gray": "#fffdf9",
+        "brand-sand": "#E8D5B7"
       },
       fontFamily: {
         sans: ["var(--font-bowlby-sc)"],
