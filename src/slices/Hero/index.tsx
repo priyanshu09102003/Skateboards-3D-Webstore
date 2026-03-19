@@ -1,12 +1,14 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
-import { PrismicNextLink } from "@prismicio/next";
+
 
 
 import { Bounded } from "@/components/Bounded";
 import { Heading } from "@/components/Heading";
 import { ButtonLink } from "@/components/ButtonLink";
+import { WideLogo } from "@/components/WideLogo";
+import { TallLogo } from "@/components/TallLogo";
 
 /**
  * Props for `Hero`.
@@ -24,6 +26,11 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       className="bg-brand-lime relative h-dvh overflow-hidden text-zinc-800 bg-texture"
     >
 
+      <div className="absolute inset-0 flex items-center pt-20">
+        <WideLogo className="w-full text-brand-purple hidden opacity-20 mix-blend-multiply lg:block" />
+        <TallLogo className="w-full text-brand-purple opacity-20 mix-blend-multiply lg:hidden" />
+      </div>
+
 
       <div className="grid absolute inset-0 mx-auto mt-24 max-w-6xl grid-rows-[1fr,auto] place-items-end px-6 ~py-10/16">
 
@@ -32,7 +39,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             <img
               src="/skateboarder.gif"
               alt="skater"
-              className="hidden md:block absolute -top-20 left-0 w-40 h-40 object-contain animate-skate"
+              className="hidden md:block absolute -top-24 left-0 w-40 h-40 object-contain animate-skate"
             />
         </Heading>
 
