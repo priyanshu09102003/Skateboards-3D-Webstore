@@ -21,7 +21,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-brand-sand relative h-dvh overflow-hidden text-zinc-800 bg-texture"
+      className="bg-brand-lime relative h-dvh overflow-hidden text-zinc-800 bg-texture"
     >
 
 
@@ -29,6 +29,11 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
         <Heading className="relative max-w-2xl place-self-start">
           <PrismicText field={slice.primary.heading} />
+            <img
+              src="/skateboarder.gif"
+              alt="skater"
+              className="hidden md:block absolute -top-20 left-0 w-40 h-40 object-contain animate-skate"
+            />
         </Heading>
 
         <div className="flex relative w-full flex-col items-center justify-between ~gap2/4 lg:flex-row">

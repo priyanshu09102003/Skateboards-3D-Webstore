@@ -96,6 +96,27 @@
   }
 }
 
+@keyframes skate {
+  0% {
+    left: 0%;
+    transform: scaleX(1);
+  }
+  49% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+  100% {
+    left: 75%;
+    transform: scaleX(-1);
+  }
+}
+
+.animate-skate {
+  animation: skate 15s linear infinite alternate;
+}
+
 ::-webkit-scrollbar {
   width: 0;
   display: none;
