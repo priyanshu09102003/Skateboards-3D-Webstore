@@ -27,7 +27,7 @@ const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
       </Heading>
 
 
-      <div className="text-center ~mb-6/10">
+      <div className="text-center ~mb-6/10 font-semibold">
 
         <PrismicRichText field={slice.primary.body} />
       </div>

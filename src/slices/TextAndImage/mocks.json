@@ -1,0 +1,185 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Merely"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "In amet elit non incididunt. In proident aliqua est qui nostrud eu qui ipsum labore sunt labore. Commodo deserunt proident consequat ut Lorem."
+						}
+					}
+				]
+			},
+			"button": {
+				"key": "c1f44bf5-bb44-4702-a76e-9f53ee95149a",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "someone"
+				}
+			},
+			"background_image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1579931794097-0ad001e51edb",
+					"width": 3958,
+					"height": 3958
+				},
+				"url": "https://images.unsplash.com/photo-1579931794097-0ad001e51edb",
+				"width": 3958,
+				"height": 3958,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "surprise",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"foreground_image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1586952518485-11b180e92764",
+					"width": 4172,
+					"height": 4000
+				},
+				"url": "https://images.unsplash.com/photo-1586952518485-11b180e92764",
+				"width": 4172,
+				"height": 4000,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "open",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"theme": {
+				"__TYPE__": "FieldContent",
+				"value": "Blue",
+				"type": "Select"
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "imageOnLeft",
+		"primary": {
+			"theme": {
+				"__TYPE__": "FieldContent",
+				"value": "Navy",
+				"type": "Select"
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Composed"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Culpa dolor nulla non aliquip sint proident id nulla labore tempor in ea. Fugiat ut nisi laboris. Id cupidatat cillum anim eiusmod."
+						}
+					}
+				]
+			},
+			"button": {
+				"key": "195b4aac-e36c-4be1-bbde-53d2d3097958",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "visitor"
+				}
+			},
+			"background_image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
+					"width": 3500,
+					"height": 2338
+				},
+				"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
+				"width": 3500,
+				"height": 2338,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "cotton",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"foreground_image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+					"width": 3212,
+					"height": 3880
+				},
+				"url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+				"width": 3212,
+				"height": 3880,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "see",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]
