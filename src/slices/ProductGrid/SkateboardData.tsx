@@ -1,10 +1,22 @@
 import { ButtonLink } from '@/components/ButtonLink';
 import { VerticalLine , HorizontalLine } from '@/components/Line';
+import { Scribble } from '@/components/Scribble';
 import { createClient } from '@/prismicio'
 import { Content, isFilled } from '@prismicio/client';
 import { PrismicNextImage } from '@prismicio/next';
 import clsx from 'clsx';
 import { FaStar } from 'react-icons/fa6';
+
+async function getDominantColorOfSkateboard(url:string){
+    const paletteURL = new URL(url);
+    paletteURL.searchParams.set("palette", "json")
+
+    const res = await fetch(paletteURL);
+
+    const json = await res.json()
+
+    return (json.dominant_colors.vibrant?.hex || json.dominant_colors.vibrant_light?.hex)
+}
 
 
 type Props = {
@@ -12,6 +24,7 @@ type Props = {
 }
 
 const VERTICAL_LINE_CLASSES = "absolute top-0 h-full stroke-2 text-stone-300 transition-colors group-hover:text-stone-400"
+const HORIZONTAL_LINE_CLASSES = "-mx-8 stroke-2 text-stone-300 transition-colors group-hover:text-stone-400"
 
 export async function SkateboardData({id}: Props) {
 
@@ -19,6 +32,7 @@ export async function SkateboardData({id}: Props) {
     const product = await client.getByID<Content.SkateboardDocument>(id)
 
     const price = isFilled.number(product.data.price) ? `₹${(product.data.price/100).toFixed(2)}` : "Price Not Available"
+    const dominantColors = isFilled.image(product.data.image)? await getDominantColorOfSkateboard(product.data.image.url) : undefined
 
 
   return (
@@ -26,10 +40,10 @@ export async function SkateboardData({id}: Props) {
 
         <VerticalLine className={clsx(VERTICAL_LINE_CLASSES, "left-4")} />
         <VerticalLine className={clsx(VERTICAL_LINE_CLASSES, "right-4")} />
-        <HorizontalLine />
+        <HorizontalLine className={HORIZONTAL_LINE_CLASSES} />
 
         <div className='flex items-center justify-between ~text-sm/2xl'>
-            <span>
+            <span className='font-semibold'>
                 {price}
             </span>
             <span className='inline-flex items-center gap-1'>
@@ -39,8 +53,11 @@ export async function SkateboardData({id}: Props) {
 
         <div className='-mb-1 overflow-hidden py-4'>
 
+            <Scribble className='absolute inset-0 h-full w-full' color={dominantColors} />
             <PrismicNextImage alt='' field={product.data.image} width={150} className='mx-auto w-[58%] origin-top transform-gpu transition-transform duration-500 ease-in-out group-hover:scale-150' />
         </div>
+
+        <HorizontalLine className={HORIZONTAL_LINE_CLASSES} />
 
         <h3 className='my-2 text-center font-sans leading-tight ~text-lg/xl'>
             {product.data.name}
