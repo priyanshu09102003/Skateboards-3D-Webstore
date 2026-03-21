@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { SVGFilters } from "@/components/SVGFilters";
 import SmoothScrolling from "@/components/SmoothScrolling";
+import EmojiCursor from "@/components/CustomCursor";
 
 const bowlby = Bowlby_One_SC({
   subsets: ["latin"],
@@ -37,6 +38,8 @@ export default function RootLayout({
 
 
         <SmoothScrolling>
+
+        <EmojiCursor/>
 
             <main>
 
