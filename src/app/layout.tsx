@@ -3,6 +3,7 @@ import { Bowlby_One_SC , DM_Mono} from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { SVGFilters } from "@/components/SVGFilters";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 const bowlby = Bowlby_One_SC({
   subsets: ["latin"],
@@ -29,20 +30,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${bowlby.variable} ${dmMono.variable} antialiased font-mono font-medium text-zinc-800 `}
       >
 
-        <main>
+
+        <SmoothScrolling>
+
+            <main>
 
 
-          <Header/>
+              <Header/>
 
-          {children}
-        </main>
+              {children}
+            </main>
 
-        <SVGFilters />
+            <SVGFilters />
+
+        </SmoothScrolling>
       </body>
     </html>
   );
