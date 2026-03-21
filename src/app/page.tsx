@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
-import { asImageSrc } from "@prismicio/client";
+import { asImageSrc, Content } from "@prismicio/client";
 import { SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
@@ -24,4 +24,40 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
     },
   };
+}
+
+type TextAndImageBundleSlice = {
+  id: string;
+  slice_type: "text_and_image_bundle";
+  slices: Content.TextAndImageSlice[]
+}
+
+function bundleTextAndImageSlices(slices: Content.HomepageDocumentDataSlicesSlice[]){
+  const res:(
+    | Content.HomepageDocumentDataSlicesSlice
+    | TextAndImageBundleSlice
+  )[] = []
+
+  for(const slice of slices){
+    if(slice.slice_type !== "text_and_image"){
+      res.push(slice);
+      continue
+    }
+
+    const bundle = res.at(-1)
+
+    if(bundle?.slice_type === "text_and_image_bundle"){
+      bundle.slices.push(slice);
+    }
+
+    else{
+      res.push({
+        id: `${slice.id}-bundle`,
+        slice_type: "text_and_image_bundle",
+        slices: [slice]
+      })
+    }
+  }
+
+  return res;
 }

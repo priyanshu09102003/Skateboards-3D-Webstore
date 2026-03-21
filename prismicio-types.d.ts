@@ -534,7 +534,7 @@ export interface TextAndImageSliceImageOnLeftPrimary {
    * - **API ID Path**: text_and_image.imageOnLeft.primary.theme
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
-  theme: prismic.SelectField<"Blue" | "Orange" | "Navy" | "Lime">;
+  theme: prismic.SelectField<"Blue" | "Orange" | "Navy" | "Sand">;
 
   /**
    * Heading field in *TextAndImage → Image on Left → Primary*
