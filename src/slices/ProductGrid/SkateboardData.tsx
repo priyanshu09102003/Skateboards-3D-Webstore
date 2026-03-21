@@ -1,13 +1,17 @@
 import { ButtonLink } from '@/components/ButtonLink';
+import { VerticalLine , HorizontalLine } from '@/components/Line';
 import { createClient } from '@/prismicio'
 import { Content, isFilled } from '@prismicio/client';
 import { PrismicNextImage } from '@prismicio/next';
+import clsx from 'clsx';
 import { FaStar } from 'react-icons/fa6';
 
 
 type Props = {
     id: string
 }
+
+const VERTICAL_LINE_CLASSES = "absolute top-0 h-full stroke-2 text-stone-300 transition-colors group-hover:text-stone-400"
 
 export async function SkateboardData({id}: Props) {
 
@@ -19,6 +23,11 @@ export async function SkateboardData({id}: Props) {
 
   return (
     <div className='group relative mx-auto w-full max-w-72 px-8 pt-4 hover:cursor-pointer'>
+
+        <VerticalLine className={clsx(VERTICAL_LINE_CLASSES, "left-4")} />
+        <VerticalLine className={clsx(VERTICAL_LINE_CLASSES, "right-4")} />
+        <HorizontalLine />
+
         <div className='flex items-center justify-between ~text-sm/2xl'>
             <span>
                 {price}
