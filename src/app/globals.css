@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  cursor: none;
+}
+
+*, *:hover, *:focus, *:active,
+a, a:hover, button, button:hover,
+input, textarea, select, [role="button"] {
+  cursor: url('/custom-cursor.cur') 0 0, auto !important;
+}
+
 .bg-texture {
   background-size: 720px 460px;
   background-repeat: repeat;

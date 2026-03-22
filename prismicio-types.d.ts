@@ -154,6 +154,21 @@ export interface SettingsDocumentDataNavigationItem {
 }
 
 /**
+ * Item in *Settings → Footer Skateboards*
+ */
+export interface SettingsDocumentDataFooterSkateboardsItem {
+  /**
+   * Skateboard field in *Settings → Footer Skateboards*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_skateboards[].skateboard
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  skateboard: prismic.ImageField<never>;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -200,6 +215,30 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+
+  /**
+   * Footer Image field in *Settings*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  footer_image: prismic.ImageField<never>;
+
+  /**
+   * Footer Skateboards field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_skateboards[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  footer_skateboards: prismic.GroupField<
+    Simplify<SettingsDocumentDataFooterSkateboardsItem>
+  >;
 }
 
 /**
@@ -771,6 +810,7 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      SettingsDocumentDataFooterSkateboardsItem,
       SkateboardDocument,
       SkateboardDocumentData,
       SkaterDocument,
