@@ -5,6 +5,7 @@ import { Bounded } from "@/components/Bounded";
 import { PrismicNextLink } from "@prismicio/next";
 import { Heading } from "@/components/Heading";
 import { SkateboardData } from "./SkateboardData";
+import { SlideIn } from "@/components/SlideIn";
 
 /**
  * Props for `ProductGrid`.
@@ -22,15 +23,19 @@ const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
       className="bg-texture bg-brand-gray"
     >
 
-      <Heading className="text-center ~mb-4/6" as="h2"> 
-        <PrismicRichText field={slice.primary.heading} />
-      </Heading>
 
+      <SlideIn>
+        <Heading className="text-center ~mb-4/6" as="h2"> 
+          <PrismicRichText field={slice.primary.heading} />
+        </Heading>
+      </SlideIn>
 
-      <div className="text-center ~mb-6/10 font-semibold">
+      <SlideIn>
+        <div className="text-center ~mb-6/10 font-semibold">
 
-        <PrismicRichText field={slice.primary.body} />
-      </div>
+          <PrismicRichText field={slice.primary.body} />
+        </div>
+      </SlideIn>
 
 
     <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
