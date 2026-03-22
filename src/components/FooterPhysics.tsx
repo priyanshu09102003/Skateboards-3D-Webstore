@@ -58,7 +58,7 @@ export function FooterPhysics({
       ([entry]) => {
         setInView(entry.isIntersecting);
       },
-      { threshold: 0.5 }, // Trigger at 50% so users see the boards drop
+      { threshold: 0.4 }, // Trigger at 40% so users see the boards drop
     );
 
     if (currentScene) observer.observe(currentScene);
@@ -147,7 +147,7 @@ export function FooterPhysics({
 
     // Runner manages the animation loop and updates engine 60 times per second
     const runner = Runner.create();
-    Runner.run(runner, engine.current);
+    Runner.run(runner, engine.current); //Calls the engine over and over again and determine the state of the engines
     Render.run(render);
 
     const currentEngine = engine.current;
