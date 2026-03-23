@@ -1,11 +1,12 @@
 "use client";
 
 import * as THREE from "three"
-import React, { Suspense, useRef } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import {Canvas, ThreeEvent} from "@react-three/fiber"
 import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
 import { Skateboard } from '@/components/Skateboard';
 import gsap from 'gsap'
+import { Hotspot } from "./Hotspot";
 
 type Props = {
     deckTextureURL : string
@@ -35,6 +36,12 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
     const containerRef = useRef<THREE.Group>(null)
     const originRef = useRef<THREE.Group>(null)
 
+    const [showHotSpot, setShowHotSpot] = useState({
+        front: true,
+        middle: true,
+        back: true
+    })
+
     function onClick(event:ThreeEvent<MouseEvent>){
         event.stopPropagation()
         const board = containerRef.current
@@ -44,6 +51,13 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
         if(!board || !origin)return;
 
         const {name} = event.object;
+
+        setShowHotSpot((current) => ({
+            ...current,
+            [name]: false
+        }))
+
+
         if(name === "back"){
             ollieTrick(board)
         }
@@ -121,17 +135,23 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
                                 constantWheelSpin
                             />
 
+                            <Hotspot isVisible={showHotSpot.front} position={[0, 0.38, 1]} color="#B8FC39" className="cursor-pointer" />
+
                             <mesh position={[0, 0.27, 0.9]} name="front" onClick={onClick}>
                                 <boxGeometry args={[0.6, 0.2, 0.58]} />
                                 <meshStandardMaterial visible={false} />
 
                             </mesh>
 
+                            <Hotspot isVisible={showHotSpot.middle} position={[0, 0.33, 0]} color="#FF7A51" className="cursor-pointer" />
+
                             <mesh position={[0, 0.27, 0]} name="middle" onClick={onClick}>
                                 <boxGeometry args={[0.6, 0.1, 1.2]} />
                                 <meshStandardMaterial visible={false} />
 
                             </mesh>
+
+                            <Hotspot isVisible={showHotSpot.back} position={[0, 0.35, -0.9]} color="#46ACFA" className="cursor-pointer" />
 
                             <mesh position={[0, 0.27, -0.9]} name="back" onClick={onClick}>
                                 <boxGeometry args={[0.6, 0.2, 0.58]} />
