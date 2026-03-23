@@ -9,6 +9,7 @@ import { Heading } from "@/components/Heading";
 import { ButtonLink } from "@/components/ButtonLink";
 import { WideLogo } from "@/components/WideLogo";
 import { TallLogo } from "@/components/TallLogo";
+import { InteractiveSkateboard } from "./InteractiveSkateboard";
 
 /**
  * Props for `Hero`.
@@ -59,6 +60,8 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
 
       {/* Skateboard */}
+
+      <InteractiveSkateboard />
     </Bounded>
   );
 };
