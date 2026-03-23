@@ -8,7 +8,7 @@ import { Skateboard } from '@/components/Skateboard';
 import gsap from 'gsap'
 import { Hotspot } from "./Hotspot";
 
-const INITIAL_CAMERA_POSITION = [1.5, 1.2, 1.6] as const
+const INITIAL_CAMERA_POSITION = [1.5, 1.0, 2.5] as const
 
 type Props = {
     deckTextureURL : string
@@ -146,7 +146,7 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
         <group>
             <Environment files={"/hdr/warehouse-256.hdr"}  />
 
-            <group position={[0, -0.8, 0]}>
+            <group position={[0, -0.2, 0]}>
                 <group ref={originRef}>
                     <group ref={containerRef} position={[-0.25, 0, -0.635]}>
                             <group position={[0, -0.086, 0.635]}>
