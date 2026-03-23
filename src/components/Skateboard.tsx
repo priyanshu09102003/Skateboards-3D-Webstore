@@ -158,7 +158,7 @@ export function Skateboard({
   useFrame(() => {
     if (!wheelRefs.current || !constantWheelSpin) return;
     for (const wheel of wheelRefs.current) {
-      wheel.rotation.x += 0.2;
+      wheel.rotation.x += 0.4;
     }
   });
 
