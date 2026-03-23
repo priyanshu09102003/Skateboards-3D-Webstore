@@ -2,7 +2,8 @@
 
 import React, { Suspense } from 'react'
 import {Canvas} from "@react-three/fiber"
-import { Environment, OrbitControls } from '@react-three/drei';
+import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
+import { Skateboard } from '@/components/Skateboard';
 
 type Props = {}
 
@@ -23,10 +24,7 @@ function Scene(){
         <group>
             <OrbitControls />
             <Environment files={"/hdr/warehouse-256.hdr"}  />
-            <mesh>
-                <meshStandardMaterial  />
-                <boxGeometry/>
-            </mesh>
+            <ContactShadows opacity={0.6} position={[0, -0.8, 0]} />
         </group>
     )
 }
