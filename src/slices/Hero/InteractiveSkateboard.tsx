@@ -3,10 +3,11 @@
 import * as THREE from "three"
 import React, { Suspense, useEffect, useRef, useState } from 'react'
 import {Canvas, ThreeEvent, useThree} from "@react-three/fiber"
-import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
+import { ContactShadows, Environment, Html, OrbitControls } from '@react-three/drei';
 import { Skateboard } from '@/components/Skateboard';
 import gsap from 'gsap'
 import { Hotspot } from "./Hotspot";
+import { WavyPaths } from "./WavyPaths";
 
 const INITIAL_CAMERA_POSITION = [1.5, 1.0, 2.5] as const
 
@@ -20,7 +21,7 @@ type Props = {
 export function InteractiveSkateboard({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props) {
   return (
     <div className = "absolute inset-0 flex items-center justify-center">
-        <Canvas className='min-h-[60rem] w-full' camera={{position: INITIAL_CAMERA_POSITION, fov:55}}>
+        <Canvas className='min-h-[60rem] w-full' camera={{position: INITIAL_CAMERA_POSITION, fov:48}}>
             <Suspense>
                 <Scene
                 deckTextureURL = {deckTextureURL}
@@ -188,7 +189,17 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
                     </group>
                 </group>
 
-                <ContactShadows opacity={0.6} position={[0, -0.086, 0]} />
+                <ContactShadows opacity={0.6} position={[0, -0.088, 0]} />
+
+                <group 
+                rotation={[-Math.PI/2, 0, -Math.PI/2]}
+                position={[-0.25, -0.086, 0]}
+                scale={[0.2, 0.2, 0.2]}
+                >
+                    <Html transform zIndexRange={[1, 0]} occlude="blending">
+                        <WavyPaths />
+                    </Html>
+                </group>
             </group>
         </group>
     )
