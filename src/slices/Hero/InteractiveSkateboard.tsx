@@ -7,7 +7,6 @@ import { ContactShadows, Environment, Html, OrbitControls } from '@react-three/d
 import { Skateboard } from '@/components/Skateboard';
 import gsap from 'gsap'
 import { Hotspot } from "./Hotspot";
-import { WavyPaths } from "./WavyPaths";
 
 const INITIAL_CAMERA_POSITION = [1.5, 1.0, 2.5] as const
 
@@ -190,16 +189,6 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
                 </group>
 
                 <ContactShadows opacity={0.6} position={[0, -0.088, 0]} />
-
-                <group 
-                rotation={[-Math.PI/2, 0, -Math.PI/2]}
-                position={[-0.25, -0.086, 0]}
-                scale={[0.2, 0.2, 0.2]}
-                >
-                    <Html transform zIndexRange={[1, 0]} occlude="blending">
-                        <WavyPaths />
-                    </Html>
-                </group>
             </group>
         </group>
     )
