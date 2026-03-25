@@ -53,7 +53,7 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
         if(!containerRef.current || !originRef.current) return;
 
         gsap.to(containerRef.current.position, {
-            x: 2,
+            x: -0.3,
             duration: 2,
             repeat: -1,
             yoyo: true,
@@ -61,7 +61,7 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
         })
 
         gsap.to(originRef.current.rotation, {
-            y: Math.PI/64,
+            y: Math.PI/68,
             duration: 2,
             repeat: -1,
             yoyo: true,
@@ -218,8 +218,7 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
                     <Html
                     wrapperClass="pointer-events-none"
                     transform
-                    zIndexRange={[1, 0]}
-                    occlude="blending"
+                    occlude = "blending"
                     >
                     <WavyPaths />
                     </Html>
