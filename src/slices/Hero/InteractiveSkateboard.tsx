@@ -7,6 +7,7 @@ import { ContactShadows, Environment, Html, OrbitControls } from '@react-three/d
 import { Skateboard } from '@/components/Skateboard';
 import gsap from 'gsap'
 import { Hotspot } from "./Hotspot";
+import { WavyPaths } from "./WavyPaths";
 
 const INITIAL_CAMERA_POSITION = [1.5, 1.0, 2.5] as const
 
@@ -20,7 +21,7 @@ type Props = {
 export function InteractiveSkateboard({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props) {
   return (
     <div className = "absolute inset-0 flex items-center justify-center">
-        <Canvas className='min-h-[60rem] w-full' camera={{position: INITIAL_CAMERA_POSITION, fov:48}}>
+        <Canvas className='min-h-[60rem] w-full' camera={{position: INITIAL_CAMERA_POSITION, fov:45}}>
             <Suspense>
                 <Scene
                 deckTextureURL = {deckTextureURL}
@@ -47,6 +48,26 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
     })
 
     const {camera} = useThree()
+
+    useEffect(() => {
+        if(!containerRef.current || !originRef.current) return;
+
+        gsap.to(containerRef.current.position, {
+            x: 2,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        })
+
+        gsap.to(originRef.current.rotation, {
+            y: Math.PI/64,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        })
+    }, [])
 
     useEffect(() => {
         camera.lookAt(new THREE.Vector3(-0.2, 0.15, 0))
@@ -146,7 +167,6 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
         <group>
             <Environment files={"/hdr/warehouse-256.hdr"}  />
 
-            <group position={[0, -0.2, 0]}>
                 <group ref={originRef}>
                     <group ref={containerRef} position={[-0.25, 0, -0.635]}>
                             <group position={[0, -0.086, 0.635]}>
@@ -189,7 +209,22 @@ function Scene({deckTextureURL, wheelTextureURL, truckColor, boltColor}: Props){
                 </group>
 
                 <ContactShadows opacity={0.6} position={[0, -0.088, 0]} />
+
+                <group
+                    rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+                    position={[0, -0.09, -0.5]}
+                    scale={[0.2, 0.2, 0.2]}
+                >
+                    <Html
+                    wrapperClass="pointer-events-none"
+                    transform
+                    zIndexRange={[1, 0]}
+                    occlude="blending"
+                    >
+                    <WavyPaths />
+                    </Html>
+                </group>
+            
             </group>
-        </group>
     )
 }
