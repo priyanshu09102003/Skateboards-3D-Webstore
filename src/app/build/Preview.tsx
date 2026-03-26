@@ -1,8 +1,8 @@
 "use client"
 
-import { Preload } from '@react-three/drei';
+import { CameraControls, Environment, Preload } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import React, { Suspense } from 'react'
+import React, { Suspense, useRef } from 'react'
 import { useCustomizerControls } from './context';
 import { asImageSrc } from '@prismicio/client';
 import { Skateboard } from '@/components/Skateboard';
@@ -20,6 +20,9 @@ type Props = {
 
 export default function Preview({wheelTextureURLs, deckTextureURLs}: Props) {
 
+
+    const cameraControls = useRef<CameraControls>(null)
+
     const {selectedWheel, selectedDeck, selectedBolt, selectedTruck} = useCustomizerControls()
     const wheelTextureURL = asImageSrc(selectedWheel?.texture)?? DEFAULT_WHEEL_TEXTURE
     const deckTextureURL = asImageSrc(selectedDeck?.texture)?? DEFAULT_DECK_TEXTURE
@@ -29,6 +32,12 @@ export default function Preview({wheelTextureURLs, deckTextureURLs}: Props) {
   return (
     <Canvas>
         <Suspense>
+
+            <Environment files={"/hdr/warehouse-512.hdr"}
+            environmentIntensity={0.6} />
+
+
+            <directionalLight castShadow lookAt={[0,0,0]} position={[1,1,1]} intensity={1.6} />
 
             <Skateboard
                 wheelTextureURL={wheelTextureURL}
@@ -40,10 +49,17 @@ export default function Preview({wheelTextureURLs, deckTextureURLs}: Props) {
                 pose='side'
             />
 
+
+            <CameraControls ref={cameraControls} minDistance={0.4} maxDistance={4} />
+
             <Preload all />
 
 
         </Suspense>
     </Canvas>
   )
+}
+
+function StageFloor() {
+    const normalMap = useTexture
 }
