@@ -1,18 +1,37 @@
 "use client";
 
 import { Heading } from '@/components/Heading';
-import { Content, KeyTextField } from '@prismicio/client';
+import { ColorField, Content, ImageField, KeyTextField } from '@prismicio/client';
+import { PrismicNextImage, PrismicNextImageProps } from '@prismicio/next';
 import clsx from 'clsx';
-import React, { ReactNode } from 'react'
+import React, { ReactNode , ComponentProps } from 'react'
+import { useCustomizerControls } from './context';
 
 type Props = Pick <Content.BoardCustomizerDocumentData, "wheels" | "decks" | "metals"> & {
     className?: string;
 }
 
 export default function Controls({wheels, decks, metals, className}: Props) {
+    const {setBolt, setDeck, setTruck, setWheel, selectedBolt, selectedDeck, selectedTruck, selectedWheel} = useCustomizerControls()
+
   return (
     <div className={clsx("flex flex-col gap-6" , className)}>
-        <Options title = "Deck"></Options>
+        <Options title = "Deck" selectedName={selectedDeck?.uid}>
+            {decks.map((deck) => (
+                <Option key={deck.uid} imageField={deck.texture} imgixParams={{
+                    rect: [20, 1550, 1000, 1000],
+                    width: 150,
+                    height:150
+                }}
+                selected = {deck.uid === selectedDeck?.uid}
+                onClick={()=>setDeck(deck)}
+                >
+
+                  {deck.uid?.replace(/-/g, " ")}   
+                </Option>
+            ))}
+        </Options>
+
         <Options title = "Wheels"></Options>
         <Options title = "Trucks"></Options>
         <Options title = "Bolts"></Options>
@@ -51,3 +70,41 @@ function Options({title, selectedName, children}: OptionsProps){
 }
 
 //Each option
+
+type OptionProps = Omit<ComponentProps<"button">, "children">&{
+    selected: boolean;
+    children: ReactNode;
+    onClick: () => void
+
+} & (
+    | {
+        imageField: ImageField;
+        imgixParams?: PrismicNextImageProps["imgixParams"];
+        colorField?: never;
+    }
+
+    | {
+        colorField: ColorField;
+        imageField?: never;
+        imgixParams?: never;
+    }
+)
+
+function Option({children, selected, imageField, imgixParams, colorField, onClick}: OptionProps){
+    return(
+
+        <li>
+            <button className={clsx("size-10 rounded-full bg-black p-0.5 outline-2 outline-white", selected && "outline")} onClick={onClick}>
+                {imageField ? (
+                    <PrismicNextImage field={imageField} imgixParams={imgixParams} className='pointer-events-none h-full w-full rounded-full' alt='' />
+                ) : (
+                    <div className='h-fll w-full rounded-full' style={{backgroundColor: colorField ?? undefined}} />
+                )}
+
+                <span className='sr-only'>
+                    {children}
+                </span>
+            </button>
+        </li>
+    )
+}
