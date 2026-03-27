@@ -56,7 +56,7 @@ export default async function page() {
                     Customize your Board
                 </Heading>
 
-                <Controls wheels={wheels} decks={decks} metals={metals} className='mb-6' />
+                <Controls wheels={wheels} decks={decks} metals={metals} className='mb-4' />
 
                 <ButtonLink href={""} color="lime" icon="plus">
                     Add to Cart

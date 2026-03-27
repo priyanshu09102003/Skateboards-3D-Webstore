@@ -32,9 +32,48 @@ export default function Controls({wheels, decks, metals, className}: Props) {
             ))}
         </Options>
 
-        <Options title = "Wheels"></Options>
-        <Options title = "Trucks"></Options>
-        <Options title = "Bolts"></Options>
+        <Options title = "Wheels" selectedName={selectedWheel?.uid}>
+            {wheels.map((wheel) => (
+                <Option key={wheel.uid} imageField={wheel.texture} imgixParams={{
+                    rect: [20, 10, 850, 850],
+                    width: 150,
+                    height:150
+                }}
+                selected = {wheel.uid === selectedWheel?.uid}
+                onClick={()=>setWheel(wheel)}
+                >
+
+                  {wheel.uid?.replace(/-/g, " ")}   
+                </Option>
+            ))}
+        </Options>
+
+
+        <Options title = "Trucks" selectedName={selectedTruck?.uid}>
+            {metals.map((metal) => (
+                <Option key={metal.uid}
+                colorField = {metal.color}
+                selected = {metal.uid === selectedTruck?.uid}
+                onClick={()=>setTruck(metal)}
+                >
+
+                  {metal.uid?.replace(/-/g, " ")}   
+                </Option>
+            ))}
+        </Options>
+
+        <Options title = "Bolts" selectedName={selectedTruck?.uid}>
+            {metals.map((metal) => (
+                <Option key={metal.uid}
+                colorField = {metal.color}
+                selected = {metal.uid === selectedBolt?.uid}
+                onClick={()=>setBolt(metal)}
+                >
+
+                  {metal.uid?.replace(/-/g, " ")}   
+                </Option>
+            ))}
+        </Options>
     </div>
   )
 }
@@ -90,21 +129,39 @@ type OptionProps = Omit<ComponentProps<"button">, "children">&{
     }
 )
 
-function Option({children, selected, imageField, imgixParams, colorField, onClick}: OptionProps){
-    return(
+function Option({
+  children,
+  selected,
+  imageField,
+  imgixParams,
+  colorField,
+  onClick,
+}: OptionProps) {
+  return (
+    <li>
+      <button
+        className={clsx(
+          "size-10 cursor-pointer rounded-full bg-black p-0.5 outline-2 outline-white",
+          selected && "outline"
+        )}
+        onClick={onClick}
+      >
+        {imageField ? (
+          <PrismicNextImage
+            field={imageField}
+            imgixParams={imgixParams}
+            className="pointer-events-none h-full w-full rounded-full"
+            alt=""
+          />
+        ) : (
+          <div
+            className="h-full w-full rounded-full"
+            style={{ backgroundColor: colorField ?? undefined }}
+          />
+        )}
 
-        <li>
-            <button className={clsx("size-10 rounded-full bg-black p-0.5 outline-2 outline-white", selected && "outline")} onClick={onClick}>
-                {imageField ? (
-                    <PrismicNextImage field={imageField} imgixParams={imgixParams} className='pointer-events-none h-full w-full rounded-full' alt='' />
-                ) : (
-                    <div className='h-fll w-full rounded-full' style={{backgroundColor: colorField ?? undefined}} />
-                )}
-
-                <span className='sr-only'>
-                    {children}
-                </span>
-            </button>
-        </li>
-    )
+        <span className="sr-only">{children}</span>
+      </button>
+    </li>
+  );
 }
