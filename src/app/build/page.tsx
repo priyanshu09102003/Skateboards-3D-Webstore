@@ -8,6 +8,7 @@ import { createClient } from '@/prismicio'
 import Preview from './Preview'
 import { asImageSrc } from '@prismicio/client'
 import Controls from './Controls'
+import Loading from './Loading'
 
 
 type SearchParams = {
@@ -30,7 +31,7 @@ export default async function page(props: {searchParams: Promise<SearchParams>})
     const defaultDeck = decks.find((deck)=> deck.uid === searchParams.deck)??decks[0]
     const defaultTruck = metals.find((metal)=> metal.uid === searchParams.truck)??metals[0]
     const defaultBolt = metals.find((metal)=> metal.uid === searchParams.bolt)??metals[0]
-    
+
 
     const wheelTextureURLs = wheels.map((texture) => asImageSrc(texture.texture)).filter((url): url is string => Boolean(url))
     const deckTextureURLs = decks.map((texture) => asImageSrc(texture.texture)).filter((url): url is string => Boolean(url))
@@ -77,6 +78,8 @@ export default async function page(props: {searchParams: Promise<SearchParams>})
             </div>
 
         </CustomizerControlsProvider>
+
+        <Loading />
 
     </div>
   )
