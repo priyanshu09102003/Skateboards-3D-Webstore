@@ -85,7 +85,7 @@ export default function Controls({wheels, decks, metals, className}: Props) {
             ))}
         </Options>
 
-        <Options title = "Bolts" selectedName={selectedTruck?.uid}>
+        <Options title = "Bolts" selectedName={selectedBolt?.uid}>
             {metals.map((metal) => (
                 <Option key={metal.uid}
                 colorField = {metal.color}
