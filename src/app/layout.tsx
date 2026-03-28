@@ -4,6 +4,7 @@ import "./globals.css";
 import { SVGFilters } from "@/components/SVGFilters";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import EmojiCursor from "@/components/CustomCursor";
+import { createClient } from "@/prismicio";
 
 const bowlby = Bowlby_One_SC({
   subsets: ["latin"],
@@ -19,9 +20,19 @@ const dmMono = DM_Mono({
   weight: "500"
 })
 
-export const metadata: Metadata = {
-  title: "3D-Customizer",
-  description: "Customize your skateboard the way you want it to be",
+export async function generateMetadata(): Promise<Metadata>{
+  const client = createClient();
+  const settings = await client.getSingle("settings")
+
+  return{
+
+    title: settings.data.site_title,
+    description: settings.data.meta_description,
+    openGraph: {
+      images: settings.data.falback_og_image.url ?? undefined
+    }
+  }
+  
 };
 
 export default function RootLayout({
